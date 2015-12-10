@@ -1,0 +1,23 @@
+/**{
+  border: dotted lightcoral 2px;
+}
+*/
+main {
+  /*border: solid black 1px;*/
+  width: 75%;
+  margin: 0 auto;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline;
+  margin-left: 25px;
+}
