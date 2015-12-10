@@ -22,13 +22,16 @@ end
 
 get '/questions/:id' do
   # specific question
-
   erb :"/questions/show"
 end
 
 get '/questions/:id/edit' do
   # edit form
-  erb :"/questions/edit"
+  if #user is the right user
+    erb :"/questions/edit"
+  else
+    #error message
+  end
 end
 
 put 'questions/:id' do
