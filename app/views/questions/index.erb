@@ -1,5 +1,12 @@
-<% questions.each do |question|  %>
-  <%= question.title %>
-  <%= question.body %>
-  <%= question.vote_count %>
+<h1>Questions Index</h1>
+<ol>
+  <% @questions.each do |question|  %>
+  <li>
+    <h3><a href="/questions/<%= question.id %>"><%= question.title %></a></h3>
+    <br>
+    <hr>
+    <p><%= question.body %></p>
+    <span id='votes'><%= question.vote_count %></span>
+  </li>
 <% end %>
+</ol>

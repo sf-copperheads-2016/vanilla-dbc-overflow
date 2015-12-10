@@ -44,5 +44,6 @@ end
 
 delete 'questions/:id' do
   # delete question
+  @question.destroy
   redirect '/questions'
 end
