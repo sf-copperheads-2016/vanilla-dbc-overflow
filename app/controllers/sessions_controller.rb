@@ -6,11 +6,25 @@ end
 get '/sessions/new' do
   # form for session
   erb :'sessions/new'
+
 end
 
 post '/sessions' do
   # new session
-  redirect "/sessions"
+  # log in
+  @user = User.find_by(email: params[:email])
+  p "$$$$$$$$$$$"
+  p @user
+  p "$$$$$$$$$$$"
+    if @user && @user.password == params[:password]
+      session[:user_id] = @user.id
+      redirect '/'
+    else
+      flash[:error] = "Incorrect name or password"
+      redirect '/sessions/new'
+    end
+
+
   # redirect "/sessions/#{@session.id}"
 end
 
