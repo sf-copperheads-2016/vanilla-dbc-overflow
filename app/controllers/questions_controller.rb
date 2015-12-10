@@ -1,5 +1,6 @@
 get '/questions' do
   # list questions
+  @questions = Question.all
   erb :'questions/index'
 end
 
