@@ -1,6 +1,8 @@
 get '/questions' do
   # list questions
+  p "GOT HERE"
   @questions = Question.all
+  p @questions
   erb :'questions/index'
 end
 
@@ -23,6 +25,7 @@ end
 
 get '/questions/:id' do
   # specific question
+  @question = Question.find(params[:id].to_i)
   erb :"/questions/show"
 end
 
