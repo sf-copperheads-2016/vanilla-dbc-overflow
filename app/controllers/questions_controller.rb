@@ -27,7 +27,9 @@ end
 
 get '/questions/:id/edit' do
   # edit form
-  if #user is the right user
+  @question = Question.find(:id)
+  @user_id = @question.user_id
+  if #current user's id matches the Question's user_id
     erb :"/questions/edit"
   else
     #error message
@@ -36,6 +38,7 @@ end
 
 put 'questions/:id' do
   # update question
+  @question = Question.update(params[:entry])
   redirect "/questions/#{params[:id]}"
 end
 
