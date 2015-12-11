@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title, :body, :type
       t.integer :user_id, :vote_sum
       t.references :question, :answer, index: true
+      t.boolean :best_answer
 
       t.timestamps(null: false)
     end
