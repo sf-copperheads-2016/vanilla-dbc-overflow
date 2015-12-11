@@ -43,6 +43,6 @@ end
 delete '/sessions' do
   # delete session
   session[:user_id] = nil
-  # current_user = nil
+  current_user = nil
   redirect '/'
 end
