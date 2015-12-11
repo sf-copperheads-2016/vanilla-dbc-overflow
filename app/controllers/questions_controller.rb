@@ -21,7 +21,8 @@ post '/questions' do
   if @question.save
     redirect "/questions/#{@question.id}"
   else
-    # flash applicable error
+    flash[:error] = "Question did not save.  Please validate something."
+    redirect '/questions/new'
   end
   # redirect "/questions"
 end
@@ -39,19 +40,15 @@ post '/questions/:id' do
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
-
-    redirect "/questions/#{params[:id]}"
-  else
-    redirect "/questions/#{params[:id]}"
   end
+  redirect "/questions/#{params[:id]}"
 end
 
 get '/questions/:id/edit' do
   # edit form
-
   @question = Question.find(params[:id])
   @user_id = @question.user_id
-  if current_user.id == @user_id#current user's id matches the Question's user_id
+  if current_user && current_user.id == @user_id#current user's id matches the Question's user_id
     erb :"/questions/edit"
   else
     #error message
@@ -59,15 +56,16 @@ get '/questions/:id/edit' do
   end
 end
 
-put 'questions/:id' do
+put '/questions/:id' do
   # update question
-  @question = Question.update(params[:entry])
+  @question = Question.find_by(id: params[:id])
+  @question.update(title: params[:title], body: params[:body])
   redirect "/questions/#{params[:id]}"
 end
 
-delete 'questions/:id' do
+delete '/questions/:id' do
   # delete question
-
+  @question = Question.find_by(id: params[:id])
   @question.destroy
   redirect '/questions'
 end

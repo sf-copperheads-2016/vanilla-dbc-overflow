@@ -8,7 +8,9 @@
   </div>
   <span class="votes"><%= @question.vote_sum %></span>
   <p><%= @question.body %></p>
-
+  <% if current_user == @question.user %>
+    <a href='/questions/<%=@question.id%>/edit'>Edit</a>
+  <% end %>
 </article>
 <div class="comments">
   <ul>
