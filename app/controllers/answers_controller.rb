@@ -8,7 +8,7 @@
 #   erb :'answers/new'
 # end
 
-post 'question/:id/answers/new' do
+post 'questions/:id/answers/new' do
   # new answer
   redirect "/answers"
   # redirect "/answers/#{@answer.id}"
