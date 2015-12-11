@@ -45,9 +45,6 @@ post '/questions/:id' do
   end
 end
 
-# get '/questions/:id/a_comment' do
-#   redirect "/questions/#{params[:id]}"
-# end
 post '/questions/:id/q_comment' do
   puts "$$$$$$$$$$$$$$$$$$$$$$$$"
   puts params.inspect
