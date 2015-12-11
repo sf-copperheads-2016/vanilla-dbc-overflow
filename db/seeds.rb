@@ -1,14 +1,14 @@
 20.times do
   User.create!(name: Faker::Name.first_name,
-              email: Faker::Internet.email,
-              password_hash: 1234,)
+               email: Faker::Internet.email,
+               password: '1234',)
 end
 
 30.times do
   Post.create!(title: Faker::Lorem.word,
-                   body: Faker::Lorem.paragraph,
-                   type: 'Question',
-                   user_id: rand(1..20),)
+               body: Faker::Lorem.paragraph,
+               type: 'Question',
+               user_id: rand(1..20),)
 end
 
 30.times do

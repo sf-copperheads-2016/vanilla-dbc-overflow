@@ -1,0 +1,24 @@
+<article id="question">
+  <h1><%= @question.title %></h1>
+
+  <div class="header">
+    <span class="datetime"><%= "Asked on #{@question.created_at}" %></span>
+    <span class="author-name"><%= "Written by: #{@question.user.name}" %></span>
+    <br>
+  </div>
+
+  <p><%= @question.body %></p>
+
+</article>
+
+<form id="new-answer-form" method= >
+ <label>Answer:</label>
+ <br>
+ <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
+ <br>
+ <button id="answer-submit"><input type="submit" value="submit answer"></button>
+</form>
+
+<article id="answers">
+
+</article>
