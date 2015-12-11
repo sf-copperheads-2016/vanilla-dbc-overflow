@@ -1,6 +1,8 @@
+<%= flash[:error] %>
 <h1>Register Yo'Self</h1>
-<form id="registration">
-  <input type="text" name="username">
-  <input type="text" name="password_hash">
+<form id="registration" action="/users" method="post">
+  <input type="text" name="user[name]" placeholder="Name">
+  <input type="text" name="user[email]" placeholder="email">
+  <input type="password" name="user[password]" placeholder="password">
   <input type="submit" value="submit">
 </form>
