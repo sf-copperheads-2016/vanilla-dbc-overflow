@@ -21,7 +21,7 @@
 </div>
 
 <p>
-  <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
+  <%= erb :'partials/_q_comment_form', layout: false, locals: { action: "questions/#{@question.id}/q_comment", value: "comment", placeholder: "comment" } %>
 </p>
 
 <br>
@@ -52,7 +52,7 @@
       <% end %>
     <br>
     <p>
-      <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
+      <%= erb :'partials/_a_comment_form', layout: false, locals: { action: "questions/#{@question.id}/a_comment", value: "comment", placeholder: "comment" } %>
     </p>
     <br>
     <% end %>
