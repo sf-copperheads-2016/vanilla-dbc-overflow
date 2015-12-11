@@ -1,3 +1,5 @@
+# OFFICALLY DEPRECATED AS OF 12/11/15 10:50 PDT
+
 # # get '/answers' do
 # #   # list answers
 # #   erb :'answers/index'
