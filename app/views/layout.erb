@@ -18,6 +18,17 @@
   <title></title>
 </head>
 <body>
+
+  <% if current_user %>
+    <form action="/sessions" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Logout">
+    </form>
+  <%else %>
+    <a href='/sessions/new'><button>Login</button></a>
+    <a href='/users/new'><button>Register</button></a>
+  <% end %>
+
   <H1>Vanilla DBC Overflow</H1>
   <nav>
     <ul>
@@ -31,5 +42,6 @@
   <main>
     <%= yield %>
   </main>
+
 </body>
 </html>
