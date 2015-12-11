@@ -52,6 +52,7 @@
       <% end %>
     <br>
     <p>
+      <% answer.id %>
       <%= erb :'partials/_a_comment_form', layout: false, locals: { action: "questions/#{@question.id}/a_comment", value: "comment", placeholder: "comment" } %>
     </p>
     <br>
