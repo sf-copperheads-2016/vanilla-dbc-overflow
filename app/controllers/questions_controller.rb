@@ -26,6 +26,7 @@ end
 get '/questions/:id' do
   # specific question
   @question = Question.find(params[:id].to_i)
+  @answers = @question.answers
   erb :"/questions/show"
 end
 

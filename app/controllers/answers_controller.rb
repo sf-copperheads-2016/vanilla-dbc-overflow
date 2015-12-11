@@ -10,26 +10,26 @@
 
 post 'questions/:id/answers/new' do
   # new answer
-  redirect "/answers"
+  redirect "/questions/:id/answers"
   # redirect "/answers/#{@answer.id}"
 end
 
-get '/answers/:id' do
-  # specific answer should only work if you login
-  erb :"/answers/show"
-end
+# get '/answers/:id' do
+#   # specific answer should only work if you login
+#   erb :"/answers/show"
+# end
 
-get '/answers/:id/edit' do
+get 'questions/:id/answers/:id/edit' do
   # edit form
   erb :"/answers/edit"
 end
 
-put 'answers/:id' do
+put 'questions/:id/answers/:id' do
   # update answer
   redirect "/answers/#{params[:id]}"
 end
 
-delete 'answers/:id' do
+delete 'questions/:id/answers/:id' do
   # delete answer
   redirect '/answers'
 end
