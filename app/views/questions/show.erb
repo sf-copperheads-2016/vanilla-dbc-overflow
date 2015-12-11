@@ -14,13 +14,17 @@
 <hr>
 <br>
 <article class="answers">
-  <% @answers.each do |answer| %>
-  <div class="header">
-    <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
-    <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
-  </div>
-  <p><%= answer.body %></p>
-  <br>
+  <% if @answers.empty? %>
+    <p>There are no answers yet. Share yours!</p>
+  <% else %>
+    <% @answers.each do |answer| %>
+    <div class="header">
+      <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
+      <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
+    </div>
+    <p><%= answer.body %></p>
+    <br>
+    <% end %>
   <% end %>
 </article>
 
