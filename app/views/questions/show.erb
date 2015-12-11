@@ -13,7 +13,7 @@
 <div class="comments">
   <ul>
     <li>
-      <% @q_becomments.each do |comment| %>
+      <% @q_comments.each do |comment| %>
         <%= comment.body %>
       <% end %>
     </li>
@@ -40,10 +40,16 @@
     <p><%= answer.body %></p>
     <br>
       <% a_comments = Comment.where(answer_id: answer.id) %>
-      <% a_comments.each do |comment| %>
-        <div class="comments">
-          <p><%= comment.body %></p>
-        </div>
+      <% if a_comments.empty? %>
+        <p>There are no comments</p>
+      <% else %>
+        <% a_comments.each do |comment| %>
+          <div class="comments">
+            <p>Comments:</p>
+            <p><%= comment.body %></p>
+          </div>
+        <% end  %>
+      <% end %>
     <br>
     <p>
       <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
