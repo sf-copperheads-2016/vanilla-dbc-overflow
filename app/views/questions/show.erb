@@ -13,7 +13,7 @@
 <div class="comments">
   <ul>
     <li>
-      <% @comments.each do |comment| %>
+      <% @q_becomments.each do |comment| %>
         <%= comment.body %>
       <% end %>
     </li>
@@ -38,6 +38,12 @@
       <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
     </div>
     <p><%= answer.body %></p>
+    <br>
+      <% a_comments = Comment.where(answer_id: answer.id) %>
+      <% a_comments.each do |comment| %>
+        <div class="comments">
+          <p><%= comment.body %></p>
+        </div>
     <br>
     <p>
       <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
