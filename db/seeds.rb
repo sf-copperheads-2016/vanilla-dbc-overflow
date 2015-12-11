@@ -22,5 +22,5 @@ end
   Post.create!(body: Faker::Lorem.sentence,
                type: 'Comment',
                user_id: rand(1..20),
-               answer_id: rand(1..30),)
+               answer_id: rand(31..60),)
 end
