@@ -1,8 +1,12 @@
 <article id="question">
   <h1><%= @question.title %></h1>
 
-  <span class="datetime"><%= "Asked on #{@question.created_at}" %></span>
-  <span class="author-name"><%= "Written by: #{@question.user.name}" %></span>
+  <div class="header">
+    <span class="datetime"><%= "Asked on #{@question.created_at}" %></span>
+    <span class="author-name"><%= "Written by: #{@question.user.name}" %></span>
+    <br>
+  </div>
+
   <p><%= @question.body %></p>
 
 </article>

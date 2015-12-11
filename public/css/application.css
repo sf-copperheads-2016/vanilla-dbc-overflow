@@ -1,23 +1,39 @@
-/**{
-  border: dotted lightcoral 2px;
+/* All elements and/or (more likely) Design Tools */
+*{
+  /*border: dotted lightcoral 2px;*/
 }
-*/
+
+/* Yeild Area on Layout, Where individual Pages are displayed.*/
 main {
   /*border: solid black 1px;*/
+  background-color: whitesmoke;
   width: 75%;
   margin: 0 auto;
 }
 
+/* Layout Title*/
 h1{
   text-align: center;
 }
 
+/* Individual Page Title */
 h2{
   text-align: center;
 }
 
+/* nav bar links */
 nav ul li {
   list-style: none;
   display: inline;
-  margin-left: 25px;
+}
+
+/*Nav Bar*/
+nav {}
+
+article#question span.datetime {
+  float:right;
+}
+
+article#question span.author-name {
+  float:left;
 }
