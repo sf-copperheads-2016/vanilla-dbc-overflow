@@ -6,17 +6,34 @@
     <span class="author-name"><%= "Written by: #{@question.user.name}" %></span>
     <br>
   </div>
-
+  <span class="votes"><%= @question.vote_sum %></span>
   <p><%= @question.body %></p>
 
 </article>
+<br>
+<hr>
+<br>
+<article class="answers">
+  <% if @answers.empty? %>
+    <p>There are no answers yet. Share yours!</p>
+  <% else %>
+    <% @answers.each do |answer| %>
+    <div class="header">
+      <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
+      <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
+    </div>
+    <p><%= answer.body %></p>
+    <br>
+    <% end %>
+  <% end %>
+</article>
 
-<form id="new-answer-form" method= >
- <label>Answer:</label>
- <br>
- <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
- <br>
- <button id="answer-submit"><input type="submit" value="submit answer"></button>
+<form id="new-answer-form" action='/questions/<%= @question.id %>' method='post' >
+  <label>Answer:</label>
+  <br>
+  <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
+  <br>
+  <button id="answer-submit"><input type="submit" value="submit answer"></button>
 </form>
 
 <article id="answers">

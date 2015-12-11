@@ -26,7 +26,15 @@ end
 get '/questions/:id' do
   # specific question
   @question = Question.find(params[:id].to_i)
+  @answers = @question.answers
   erb :"/questions/show"
+end
+
+post '/questions/:id' do
+  @new_answer = Answer.create!(body: params[:body],
+                               question_id: params[:id].to_i,
+                               user_id: 1,) #change this so that user reflects current user
+  redirect "/questions/#{params[:id]}"
 end
 
 get '/questions/:id/edit' do
