@@ -1,7 +1,6 @@
 
 get '/questions' do
   # list questions
-  p "GOT HERE"
   @questions = Question.all
   erb :'questions/index'
 end
@@ -36,11 +35,15 @@ get '/questions/:id' do
 end
 
 post '/questions/:id' do
+  if current_user
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
 
-  redirect "/questions/#{params[:id]}"
+    redirect "/questions/#{params[:id]}"
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/questions/:id/edit' do
