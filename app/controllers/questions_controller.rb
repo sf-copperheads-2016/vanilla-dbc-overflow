@@ -38,7 +38,7 @@ post '/questions/:id' do
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
   else
-    puts "NOT OKAY"
+    # flash applicable error
   end
   redirect "/questions/#{params[:id]}"
 end

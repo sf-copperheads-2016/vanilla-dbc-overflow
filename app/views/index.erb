@@ -1,10 +1,11 @@
 
 <% if current_user %>
   <h3> Hello <%= current_user.name %></h3>
+  <a href="/questions/index">Browse Questions</a>
+  <a href="/questions/new">Post New Question</a>
 <% else %>
-
   <h3> Hello, y'all </h3>
 <% end %>
 
 <p>This is the Stack Overflow look-alike created by Nicole Yee, Kim Allen, Kyle Smith and Deanna Warren. It is awesome because we are awesome. </p>
-<p>The Link to all of the posts will be found here</a></p>
+<p>The Link to all of the posts will be found here</p>
