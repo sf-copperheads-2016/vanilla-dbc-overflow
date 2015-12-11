@@ -59,10 +59,12 @@
   <% end %>
 </article>
 
-<form id="new-answer-form" action='/questions/<%= @question.id %>' method='post' >
-  <label>Answer:</label>
-  <br>
-  <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
-  <br>
-  <button id="answer-submit"><input type="submit" value="submit answer"></button>
-</form>
+<% if current_user %>
+  <form id="new-answer-form" action='/questions/<%= @question.id %>' method='post' >
+    <label>Answer:</label>
+    <br>
+    <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
+    <br>
+    <button id="answer-submit"><input type="submit" value="submit answer"></button>
+  </form>
+<% end  %>
