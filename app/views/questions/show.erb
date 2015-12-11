@@ -14,16 +14,16 @@
 </article>
 <div class="comments">
   <ul>
+    <% @q_comments.each do |comment| %>
     <li>
-      <% @q_comments.each do |comment| %>
-        <%= comment.body %>
-      <% end %>
+      <%= comment.body %>
     </li>
+    <% end %>
   </ul>
 </div>
 
 <p>
-  <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
+  <%= erb :'partials/_q_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/q_comment", value: "comment", placeholder: "comment", question_id: @question.id } %>
 </p>
 
 <br>
@@ -54,7 +54,7 @@
       <% end %>
     <br>
     <p>
-      <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
+      <%= erb :'partials/_a_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/a_comment", value: "comment", placeholder: "comment", answer_id: answer.id } %>
     </p>
     <br>
     <% end %>

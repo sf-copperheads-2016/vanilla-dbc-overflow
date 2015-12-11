@@ -44,6 +44,24 @@ post '/questions/:id' do
   redirect "/questions/#{params[:id]}"
 end
 
+post '/questions/:id/q_comment' do
+  if current_user
+    @new_a_comment = Comment.create!(body: params[:comment],
+                                     question_id: params[:question_id],
+                                     user_id: current_user.id,)
+  end
+  redirect "/questions/#{params[:id]}"
+end
+
+post '/questions/:id/a_comment' do
+  if current_user
+    @new_a_comment = Comment.create!(body: params[:comment],
+                                     answer_id: params[:answer_id],
+                                     user_id: current_user.id,)
+  end
+  redirect "/questions/#{params[:id]}"
+end
+
 get '/questions/:id/edit' do
   # edit form
   @question = Question.find(params[:id])
