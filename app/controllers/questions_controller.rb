@@ -49,7 +49,7 @@ end
 get '/questions/:id/edit' do
   # edit form
 
-  @question = Question.find(:id)
+  @question = Question.find(params[:id])
   @user_id = @question.user_id
   if current_user.id == @user_id#current user's id matches the Question's user_id
     erb :"/questions/edit"
