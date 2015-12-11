@@ -11,12 +11,13 @@ end
 post '/users' do
   # new user
   @user = User.new(params[:user])
-  if @user.save
+
+  if @user.save && params[:user["password"]] != ""
     session[:user_id] = @user.id
     redirect '/'
   else
     flash[:error] = "Didn't work.  Try again."
-    redirect "/users"
+    redirect "/users/new"
   end
   # redirect "/users/#{@user.id}"
 end
