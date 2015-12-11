@@ -45,10 +45,30 @@ post '/questions/:id' do
   end
 end
 
-post 'questions/#{@question.id}/a_comment' do
+# get '/questions/:id/a_comment' do
+#   redirect "/questions/#{params[:id]}"
+# end
+post '/questions/:id/q_comment' do
+  puts "$$$$$$$$$$$$$$$$$$$$$$$$"
+  puts params.inspect
   if current_user
-    @new_a_comment = Comment.create!(body: params[:body])
+    @new_a_comment = Comment.create!(body: params[:comment],
+                                     question_id: params[:question_id],
+                                     user_id: current_user.id,)
+    redirect "/questions/#{params[:id]}"
+  else
+    redirect "/questions/#{params[:id]}"
+  end
+end
 
+post '/questions/:id/a_comment' do
+  if current_user
+    @new_a_comment = Comment.create!(body: params[:comment],
+                                     answer_id: params[:answer_id],
+                                     user_id: current_user.id,)
+    redirect "/questions/#{params[:id]}"
+  else
+    redirect "/questions/#{params[:id]}"
   end
 end
 
