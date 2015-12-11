@@ -10,6 +10,15 @@
   <p><%= @question.body %></p>
 
 </article>
+<div class="comments">
+  <ul>
+    <li>
+      <% @comments.each do |comment| %>
+        <%= comment.body %>
+      <% end %>
+    </li>
+  </ul>
+</div>
 
 <p>
   <%= erb :'partials/_comment_form', layout: false, locals: { action: "questions/#{@question.id}/comments", value: "comment", placeholder: "comment" } %>
