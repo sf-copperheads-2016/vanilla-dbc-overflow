@@ -28,7 +28,7 @@
   <% end %>
 </article>
 
-<form id="new-answer-form" action='/questions/<%= @question.id %>/answers/new' method='post' >
+<form id="new-answer-form" action='/questions/<%= @question.id %>' method='post' >
   <label>Answer:</label>
   <br>
   <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
