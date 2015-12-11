@@ -31,9 +31,15 @@ get '/questions/:id' do
 end
 
 post '/questions/:id' do
-  @new_answer = Answer.create!(body: params[:body],
-                               question_id: params[:id].to_i,
-                               user_id: 1,) #change this so that user reflects current user
+  if current_user && authorized?
+    puts current_user
+    puts current_user.id
+    @new_answer = Answer.create!(body: params[:body],
+                                 question_id: params[:id].to_i,
+                                 user_id: current_user.id,)
+  else
+    puts "NOT OKAY"
+  end
   redirect "/questions/#{params[:id]}"
 end
 
