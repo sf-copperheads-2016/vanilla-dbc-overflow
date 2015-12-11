@@ -39,10 +39,16 @@ post '/questions/:id' do
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
-
     redirect "/questions/#{params[:id]}"
   else
     redirect "/questions/#{params[:id]}"
+  end
+end
+
+post 'questions/#{@question.id}/a_comment' do
+  if current_user
+    @new_a_comment = Comment.create!(body: params[:body])
+
   end
 end
 
