@@ -12,7 +12,7 @@ post '/users' do
   # new user
   @user = User.new(params[:user])
 
-  if @user.save && params[:user["password"]] != ""
+  if @user.save
     session[:user_id] = @user.id
     redirect '/'
   else
@@ -36,10 +36,16 @@ end
 
 put 'users/:id' do
   # update user
+
+  @user = User.find_by_id(params[:id])
+  @user.update(params[:id])
   redirect "/users/#{params[:id]}"
 end
 
 delete 'users/:id' do
   # delete user
+  @user = User.find_by(id: current_user.id)
+  @user.destroy
+  session.clear
   redirect '/users'
 end
