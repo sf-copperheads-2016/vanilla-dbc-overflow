@@ -1,7 +1,7 @@
-get '/sessions' do
-  # list sessions
-  erb :'sessions/index'
-end
+# get '/sessions' do
+#   # list sessions
+#   erb :'sessions/index'
+# end
 
 get '/sessions/new' do
   # form for session
@@ -13,9 +13,6 @@ post '/sessions' do
   # new session
   # log in
   @user = User.find_by(email: params[:email])
-  p "$$$$$$$$$$$"
-  p @user
-  p "$$$$$$$$$$$"
     if @user && @user.password == params[:password]
       session[:user_id] = @user.id
       redirect '/'
@@ -28,22 +25,24 @@ post '/sessions' do
   # redirect "/sessions/#{@session.id}"
 end
 
-get '/sessions/:id' do
-  # specific session should only work if you login
-  erb :"/sessions/show"
-end
+# get '/sessions/:id' do
+#   # specific session should only work if you login
+#   erb :"/sessions/show"
+# end
 
-get '/sessions/:id/edit' do
-  # edit form
-  erb :"/sessions/edit"
-end
+# get '/sessions/:id/edit' do
+#   # edit form
+#   erb :"/sessions/edit"
+# end
 
-put 'sessions/:id' do
-  # update session
-  redirect "/sessions/#{params[:id]}"
-end
+# put 'sessions/:id' do
+#   # update session
+#   redirect "/sessions/#{params[:id]}"
+# end
 
-delete 'sessions/:id' do
+delete '/sessions' do
   # delete session
-  redirect '/sessions'
+  session[:user_id] = nil
+  # current_user = nil
+  redirect '/'
 end

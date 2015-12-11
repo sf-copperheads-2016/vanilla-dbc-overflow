@@ -19,7 +19,10 @@
 </head>
 <body>
   <% if current_user %>
-    <a href='/users/<%= current_user.id %>'><button>Logout</button></a>
+    <form action="/sessions" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Logout">
+    </form>
   <%else %>
     <a href='/sessions/new'><button>Login</button></a>
     <a href='/users/new'><button>Register</button></a>
