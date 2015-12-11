@@ -1,21 +1,25 @@
+
 get '/questions' do
   # list questions
   p "GOT HERE"
   @questions = Question.all
-  p @questions
   erb :'questions/index'
 end
 
 get '/questions/new' do
   # form for question
-  erb :'questions/new'
+  if current_user
+    erb :'questions/new'
+  else
+    redirect '/questions'
+  end
 end
 
 post '/questions' do
   # new question
   @question = Question.new(title: params[:title],
-                           body: params[:body],)
-  if @entry.save
+                           body: params[:body], user_id: current_user.id)
+  if @question.save
     redirect "/questions/#{@question.id}"
   else
     # flash applicable error
@@ -31,26 +35,25 @@ get '/questions/:id' do
 end
 
 post '/questions/:id' do
-  if current_user && authorized?
-    puts current_user
-    puts current_user.id
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
-  else
-    # flash applicable error
-  end
+  # else
+  #   # flash applicable error
+  # end
   redirect "/questions/#{params[:id]}"
 end
 
 get '/questions/:id/edit' do
   # edit form
+
   @question = Question.find(:id)
   @user_id = @question.user_id
-  if #current user's id matches the Question's user_id
+  if current_user.id == @user_id#current user's id matches the Question's user_id
     erb :"/questions/edit"
   else
     #error message
+    redirect '/questions'
   end
 end
 
@@ -62,6 +65,7 @@ end
 
 delete 'questions/:id' do
   # delete question
+
   @question.destroy
   redirect '/questions'
 end
