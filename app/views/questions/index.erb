@@ -1,6 +1,15 @@
 <h1>Questions Index</h1>
 <ol>
   <% @questions.each do |question|  %>
+    <form action='/questions/<%= question.id %>/votes' method='post'>
+      <input type='hidden' name='vote_value' value='1'>
+      <input type='submit' value='Upvote'>
+    </form>
+    <form action='/questions/<%= question.id %>/votes' method='post'>
+      <input type='hidden' name='vote_value' value='-1'>
+      <input type='submit' value='Downvote'>
+    </form>
+    <h5><%= question.votes.sum(:vote_value) %> Total votes</h5>
 
     <li>
       <h3><a href="/questions/<%= question.id %>"><%= question.title %></a></h3>
