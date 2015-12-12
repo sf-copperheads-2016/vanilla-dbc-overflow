@@ -93,6 +93,7 @@ DEPENDENCIES
   factory_girl
   faker
   hirb
+  json
   pg
   rack-test
   rake
