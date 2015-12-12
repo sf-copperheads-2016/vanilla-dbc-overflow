@@ -21,10 +21,11 @@
     <% end %>
   </ul>
 </div>
-
-<p>
-  <%= erb :'partials/_q_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/q_comment", value: "comment", placeholder: "comment", question_id: @question.id } %>
-</p>
+<div id="question_comments">
+  <p>
+    <%= erb :'partials/_q_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/q_comment", value: "comment", placeholder: "comment", question_id: @question.id } %>
+  </p>
+</div>
 
 <br>
 <hr>

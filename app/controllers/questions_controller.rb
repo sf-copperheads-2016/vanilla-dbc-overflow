@@ -20,11 +20,7 @@ post '/questions' do
                            body: params[:body],
                            user_id: current_user.id,)
   if @question.save
-    if request.xhr?
-      return @question.to_json
-    else
-      redirect "/questions/#{@question.id}"
-    end
+    redirect "/questions/#{@question.id}"
   else
     flash[:error] = "Question did not save.  Please validate something."
     redirect '/questions/new'
@@ -51,9 +47,14 @@ end
 
 post '/questions/:id/q_comment' do
   if current_user
-    @new_a_comment = Comment.create!(body: params[:comment],
+    @new_q_comment = Comment.create!(body: params[:comment],
                                      question_id: params[:question_id],
                                      user_id: current_user.id,)
+    if request.xhr?
+      return @new_q_comment.to_json
+    else
+      redirect "/questions/#{params[:id]}"
+    end
   end
   redirect "/questions/#{params[:id]}"
 end

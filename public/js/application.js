@@ -2,19 +2,23 @@ $(document).ready(function(){
   create_q_comment();
 });
 
-var create_comment = function(){
+var create_q_comment = function(){
   $('input[type="submit"]').on('click', function(e){
     e.preventDefault();
-    var formData = $('#submit_question').serialize();
+    var formData = $('.q_comment_form').serialize();
+    console.log("Form")
     console.log(formData);
     var request = $.ajax({
       method: 'POST',
-      url: "/questions",
+      url: "/questions/:id/q_comment",
       data: formData,
       dataType: 'JSON',
     });
+    console.log("Request:")
+    console.log(request)
     request.done(function(response){
-      $('.body').append()
+      $('.comments ul').append(
+        '<li>'+response.body+'</li>');
     })
   });
 }
