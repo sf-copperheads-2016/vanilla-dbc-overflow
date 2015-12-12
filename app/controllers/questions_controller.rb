@@ -75,10 +75,6 @@ end
 
 put '/questions/:id/best_answer' do
   # best answer button
-  puts "HEEEEEEYYOOOOOO"
-  puts params[:id]
-  puts Answer.find(params[:toggle_best].to_i)
-  puts params.inspect
   @answer = Answer.find(params[:toggle_best].to_i)
   @answer.update_attributes(best_answer: true)
   @answer.save
