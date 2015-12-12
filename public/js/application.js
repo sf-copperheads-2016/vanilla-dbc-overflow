@@ -69,22 +69,6 @@ var choose_best_answer = function(){
 
 // $(document).ready(function() {
 
-  //addAnswer
-  // $('form#new-answer-form button#answer-submit').on('click',function(event){
-  //   event.preventDefault();
-  //   var new_comment = $.ajax({
-  //     type: "POST",
-  //     url: '/questions/<%= @question.id %>',
-  //   });
-  //   $('article.answers').append()
-  // });
-// $(*** new comment button on post ***).click(addComment());
-  // $(*** upvote button ***).click(voteSubmit(1));
-  // $(*** downvote button ***).click(voteSubmit(-1))
-// });
-
-
-
 // var addAnswer = function(){
 //   // 'div class="comments"><p>Comments:</p><p><%= comment.body %></p></div>'
 //   // - clicking submit on the answer form adds the answer to the DB and appends to the answer area
