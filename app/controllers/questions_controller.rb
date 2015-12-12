@@ -41,6 +41,11 @@ post '/questions/:id' do
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
+    if request.xhr?
+      return @new_answer.to_json
+    else
+      redirect "/questions/#{params[:id]}"
+    end
   end
   redirect "/questions/#{params[:id]}"
 end
