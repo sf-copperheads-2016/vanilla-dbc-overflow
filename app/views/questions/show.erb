@@ -43,6 +43,7 @@
     <button class="best_answer">Best Answer</button>
     <p><%= answer.body %></p>
     <br>
+    <div class="a_comments">
       <% a_comments = Comment.where(answer_id: answer.id) %>
       <% if a_comments.empty? %>
         <p>There are no comments</p>
@@ -55,6 +56,7 @@
           </div>
         <% end  %>
       <% end %>
+    </div>
     <br>
     <p>
       <%= erb :'partials/_a_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/a_comment", value: "comment", placeholder: "comment", answer_id: answer.id } %>
