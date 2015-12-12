@@ -2,6 +2,7 @@ $(document).ready(function(){
   create_q_comment();
   create_a_comment();
   answer_question();
+  choose_best_answer();
 });
 
 var create_q_comment = function(){
@@ -49,10 +50,7 @@ var answer_question = function(){
   $('#answer-submit').on('click', function(e){
     e.preventDefault();
     var formData = $('#new-answer-form').serialize();
-    console.log("Form;");
-    console.log(formData);
     var question_id = $("input:hidden[name=question_id]").val()
-    console.log($("input:hidden[name=question_id]").val())
     var request = $.ajax({
       method: 'POST',
       url:"/questions/" + question_id,
@@ -63,6 +61,10 @@ var answer_question = function(){
       $('.answers').append(response.body);
     })
   });
+}
+
+var choose_best_answer = function(){
+  $()
 }
 
 // $(document).ready(function() {
