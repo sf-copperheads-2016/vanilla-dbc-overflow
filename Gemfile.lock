@@ -103,5 +103,7 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-flash
 
+  json
+
 BUNDLED WITH
    1.10.6
