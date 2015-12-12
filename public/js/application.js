@@ -23,6 +23,9 @@ var create_q_comment = function(){
 // var create_a_comment = function(){
 //   $('#a_comment_button').on('click', function(e){
 //     e.preventDefault();
+//     console.log($('#a_comment_button').siblings())
+//     console.log(this)
+//     console.log($(this).next())
 //     var formData = $('.a_comment_form').serialize();
 //     console.log("Form")
 //     console.log(formData);
