@@ -17,7 +17,8 @@ end
 post '/questions' do
   # new question
   @question = Question.new(title: params[:title],
-                           body: params[:body], user_id: current_user.id)
+                           body: params[:body],
+                           user_id: current_user.id,)
   if @question.save
     redirect "/questions/#{@question.id}"
   else
@@ -46,9 +47,14 @@ end
 
 post '/questions/:id/q_comment' do
   if current_user
-    @new_a_comment = Comment.create!(body: params[:comment],
+    @new_q_comment = Comment.create!(body: params[:comment],
                                      question_id: params[:question_id],
                                      user_id: current_user.id,)
+    if request.xhr?
+      return @new_q_comment.to_json
+    else
+      redirect "/questions/#{params[:id]}"
+    end
   end
   redirect "/questions/#{params[:id]}"
 end

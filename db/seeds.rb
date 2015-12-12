@@ -18,6 +18,10 @@ end
                question_id: rand(1..30),)
 end
 
+lastly = Answer.last
+lastly.best_answer = true
+lastly.save
+
 30.times do
   Post.create!(body: Faker::Lorem.sentence,
                type: 'Comment',

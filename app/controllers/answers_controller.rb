@@ -23,17 +23,21 @@
 # #   erb :"/answers/show"
 # # end
 
-# get 'questions/:id/answers/:id/edit' do
-#   # edit form
-#   erb :"/answers/edit"
-# end
+get '/questions/:question_id/answers/:id/edit' do
+  # edit form
+  @answer = Answer.find_by(id: params[:id])
 
-# put 'questions/:id/answers/:id' do
-#   # update answer
-#   redirect "/answers/#{params[:id]}"
-# end
+  erb :"/answers/edit"
+end
 
-# delete 'questions/:id/answers/:id' do
-#   # delete answer
-#   redirect '/answers'
-# end
+put '/questions/:question_id/answers/:id' do
+  # update answer
+  @answer = Answer.find_by(id: params[:id])
+  @answer.update(body: params[:body])
+  redirect "/questions/#{params[:question_id]}"
+end
+
+delete '/questions/:id/answers/:id' do
+  # delete answer
+  redirect '/answers'
+end
