@@ -17,9 +17,14 @@ end
 post '/questions' do
   # new question
   @question = Question.new(title: params[:title],
-                           body: params[:body], user_id: current_user.id)
+                           body: params[:body],
+                           user_id: current_user.id,)
   if @question.save
-    redirect "/questions/#{@question.id}"
+    if request.xhr?
+      return @question.to_json
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
     flash[:error] = "Question did not save.  Please validate something."
     redirect '/questions/new'

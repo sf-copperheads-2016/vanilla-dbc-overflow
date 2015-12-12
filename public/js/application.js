@@ -1,3 +1,24 @@
+$(document).ready(function(){
+  create_q_comment();
+});
+
+var create_comment = function(){
+  $('input[type="submit"]').on('click', function(e){
+    e.preventDefault();
+    var formData = $('#submit_question').serialize();
+    console.log(formData);
+    var request = $.ajax({
+      method: 'POST',
+      url: "/questions",
+      data: formData,
+      dataType: 'JSON',
+    });
+    request.done(function(response){
+      $('.body').append()
+    })
+  });
+}
+
 // $(document).ready(function() {
 
   //addAnswer

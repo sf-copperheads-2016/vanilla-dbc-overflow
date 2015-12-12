@@ -39,10 +39,8 @@
       <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
       <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
     </div>
+    <button class="best_answer">Best Answer</button>
     <p><%= answer.body %></p>
-    <% if current_user == answer.user %>
-      <a href='/questions/<%= answer.question_id %>/answers/<%= answer.id %>/edit'>Edit</a>
-    <% end %>
     <br>
       <% a_comments = Comment.where(answer_id: answer.id) %>
       <% if a_comments.empty? %>

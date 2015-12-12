@@ -93,6 +93,7 @@ DEPENDENCIES
   factory_girl
   faker
   hirb
+  json
   pg
   rack-test
   rake
@@ -102,8 +103,6 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   sinatra-flash
-
-  json
 
 BUNDLED WITH
    1.10.6
