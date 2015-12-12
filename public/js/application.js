@@ -50,7 +50,7 @@ var answer_question = function(){
   $('#answer-submit').on('click', function(e){
     e.preventDefault();
     var formData = $('#new-answer-form').serialize();
-    var question_id = $("input:hidden[name=question_id]").val()
+    var question_id = $("input:hidden[name=question_id]").val();
     var request = $.ajax({
       method: 'POST',
       url:"/questions/" + question_id,
@@ -64,7 +64,21 @@ var answer_question = function(){
 }
 
 var choose_best_answer = function(){
-  $()
+  $(".best_answer").on('click',function(e){
+    e.preventDefault();
+    var formData = $('.best_answer').serialize();
+    var question_id = $("input:hidden[name=question_id]").val();
+    var request = $.ajax({
+      method: 'POST',
+      url: "/questions/" + question_id + "/best_answer",
+      data: formData,
+      dataType: 'JSON',
+    });
+    request.done(function(response){
+      console.log("Need to Disable the button somehow")
+      $('.best_answer_button').prop("disabled", true);
+    });
+  });
 }
 
 // $(document).ready(function() {

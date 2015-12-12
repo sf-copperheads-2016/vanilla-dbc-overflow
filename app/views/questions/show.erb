@@ -44,7 +44,7 @@
       <form class="best_answer" method="post" action="/questions/<%= @question.id %>/best_answer">
         <input type="hidden" name="_method" value="put">
         <input type="hidden" name="toggle_best" value="<%= answer.id %>">
-        <button class="best_answer"><input type="submit" value="Best Answer"></button>
+        <button class="best_answer_button"><input type="submit" value="Best Answer"></button>
       </form>
       <p><%= answer.body %></p>
       <br>

@@ -75,10 +75,15 @@ end
 
 put '/questions/:id/best_answer' do
   # best answer button
-  @answer = Answer.find(params[:toggle_best].to_i)
-  @answer.update_attributes(best_answer: true)
-  @answer.save
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    puts params.inspect
+    @answer = Answer.find(params[:toggle_best].to_i)
+    @answer.update_attributes(best_answer: true)
+    @answer.save
+    @answer.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/questions/:id/edit' do
