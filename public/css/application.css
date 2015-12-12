@@ -6,7 +6,7 @@
 /* Yeild Area on Layout, Where individual Pages are displayed.*/
 main {
   /*border: solid black 1px;*/
-  background-color: whitesmoke;
+  background-color: lightgray;
   width: 75%;
   margin: 0 auto;
 }
@@ -28,7 +28,9 @@ nav ul li {
 }
 
 /*Nav Bar*/
-nav {}
+nav {
+  text-align: center;
+}
 
 article#question span.datetime {
   float:right;
@@ -36,4 +38,14 @@ article#question span.datetime {
 
 article#question span.author-name {
   float:left;
+}
+
+div.comments {
+  width: 50%;
+  margin-left: 50%
+}
+
+article.answers {
+  width:75%;
+  margin-left: 25%;
 }
