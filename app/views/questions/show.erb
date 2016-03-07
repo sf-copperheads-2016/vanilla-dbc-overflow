@@ -36,27 +36,33 @@
     <p>There are no answers yet. Share yours!</p>
   <% else %>
     <% @answers.each do |answer| %>
-    <div class="header">
-      <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
-      <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
-    </div>
-    <button class="best_answer">Best Answer</button>
-    <p><%= answer.body %></p>
-    <br>
-    <div class="a_comments">
-      <% a_comments = Comment.where(answer_id: answer.id) %>
-      <% if a_comments.empty? %>
-        <p>There are no comments</p>
-      <% else %>
-        <% a_comments.each do |comment| %>
-          <div class="comments">
-            <p>Comments:</p>
-            <p><%= comment.body %></p>
-            <p><%= "By #{comment.user.name}" %></p>
-          </div>
-        <% end  %>
-      <% end %>
-    </div>
+    <article id="<%= answer.id %>">
+      <div class="header">
+        <span class="datetime"><%= "Answered at #{answer.created_at}" %></span>
+        <span class="author-name"><%= "Answered by: #{answer.user.name}" %></span>
+      </div>
+      <form class="best_answer" method="post" action="/questions/<%= @question.id %>/best_answer">
+        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="toggle_best" value="<%= answer.id %>">
+        <button class="best_answer_button"><input type="submit" value="Best Answer"></button>
+      </form>
+      <p><%= answer.body %></p>
+      <br>
+      <div class="a_comments">
+        <% a_comments = Comment.where(answer_id: answer.id) %>
+        <% if a_comments.empty? %>
+          <p>There are no comments</p>
+        <% else %>
+          <% a_comments.each do |comment| %>
+            <div class="comments">
+              <p>Comments:</p>
+              <p><%= comment.body %></p>
+              <p><%= "By #{comment.user.name}" %></p>
+            </div>
+          <% end  %>
+        <% end %>
+      </div>
+    </article>
     <br>
     <p>
       <%= erb :'partials/_a_comment_form', layout: false, locals: { action: "/questions/#{@question.id}/a_comment", value: "comment", placeholder: "comment", answer_id: answer.id } %>
@@ -70,6 +76,7 @@
   <form id="new-answer-form" action='/questions/<%= @question.id %>' method='post' >
     <label>Answer:</label>
     <br>
+    <input type="hidden" name="question_id" value=<%= @question.id %>>
     <textarea class="new-answer" name="body" rows="4" cols="50"></textarea>
     <br>
     <button id="answer-submit"><input type="submit" value="submit answer"></button>

@@ -1,6 +1,8 @@
 $(document).ready(function(){
   create_q_comment();
   create_a_comment();
+  answer_question();
+  choose_best_answer();
 });
 
 var create_q_comment = function(){
@@ -20,47 +22,66 @@ var create_q_comment = function(){
   });
 }
 
-// var create_a_comment = function(){
-//   $('#a_comment_button').on('click', function(e){
-//     e.preventDefault();
-//     console.log($('#a_comment_button').siblings())
-//     console.log(this)
-//     console.log($(this).next())
-//     var formData = $('.a_comment_form').serialize();
-//     console.log("Form")
-//     console.log(formData);
-//     var request = $.ajax({
-//       method: 'POST',
-//       url: "/questions/:id/a_comment",
-//       data: formData,
-//       dataType: 'JSON',
-//     });
-//     console.log("Request:")
-//     console.log(request)
-//     request.done(function(response){
-//       $('.a_comments').append(
-//         '<p>'+response.body+'</p>');
-//     })
-//   });
-// }
+var create_a_comment = function(){
+  $('#a_comment_button').on('click', function(e){
+    e.preventDefault();
+    console.log($('#a_comment_button').siblings())
+    console.log(this)
+    console.log($(this).next())
+    var formData = $('.a_comment_form').serialize();
+    console.log("Form")
+    console.log(formData);
+    var request = $.ajax({
+      method: 'POST',
+      url: "/questions/:id/a_comment",
+      data: formData,
+      dataType: 'JSON',
+    });
+    console.log("Request:")
+    console.log(request)
+    request.done(function(response){
+      $('.a_comments').append(
+        '<p>'+response.body+'</p>');
+    })
+  });
+}
+
+var answer_question = function(){
+  $('#answer-submit').on('click', function(e){
+    e.preventDefault();
+    var formData = $('#new-answer-form').serialize();
+    var question_id = $("input:hidden[name=question_id]").val();
+    var request = $.ajax({
+      method: 'POST',
+      url:"/questions/" + question_id,
+      data: formData,
+      dataType: 'JSON',
+    });
+    request.done(function(response){
+      $('.answers').append(response.body);
+    })
+  });
+}
+
+var choose_best_answer = function(){
+  $(".best_answer").on('click',function(e){
+    e.preventDefault();
+    var formData = $('.best_answer').serialize();
+    var question_id = $("input:hidden[name=question_id]").val();
+    var request = $.ajax({
+      method: 'POST',
+      url: "/questions/" + question_id + "/best_answer",
+      data: formData,
+      dataType: 'JSON',
+    });
+    request.done(function(response){
+      console.log("Need to Disable the button somehow")
+      $('.best_answer_button').prop("disabled", true);
+    });
+  });
+}
 
 // $(document).ready(function() {
-
-  //addAnswer
-  // $('form#new-answer-form button#answer-submit').on('click',function(event){
-  //   event.preventDefault();
-  //   var new_comment = $.ajax({
-  //     type: "POST",
-  //     url: '/questions/<%= @question.id %>',
-  //   });
-  //   $('article.answers').append()
-  // });
-// $(*** new comment button on post ***).click(addComment());
-  // $(*** upvote button ***).click(voteSubmit(1));
-  // $(*** downvote button ***).click(voteSubmit(-1))
-// });
-
-
 
 // var addAnswer = function(){
 //   // 'div class="comments"><p>Comments:</p><p><%= comment.body %></p></div>'

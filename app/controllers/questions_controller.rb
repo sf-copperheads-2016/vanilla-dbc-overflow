@@ -41,6 +41,11 @@ post '/questions/:id' do
     @new_answer = Answer.create!(body: params[:body],
                                  question_id: params[:id].to_i,
                                  user_id: current_user.id,)
+    if request.xhr?
+      return @new_answer.to_json
+    else
+      redirect "/questions/#{params[:id]}"
+    end
   end
   redirect "/questions/#{params[:id]}"
 end
@@ -66,6 +71,19 @@ post '/questions/:id/a_comment' do
                                      user_id: current_user.id,)
   end
   redirect "/questions/#{params[:id]}"
+end
+
+put '/questions/:id/best_answer' do
+  # best answer button
+  if request.xhr?
+    puts params.inspect
+    @answer = Answer.find(params[:toggle_best].to_i)
+    @answer.update_attributes(best_answer: true)
+    @answer.save
+    @answer.to_json
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 get '/questions/:id/edit' do
